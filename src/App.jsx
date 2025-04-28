@@ -32,7 +32,11 @@ function App() {
       const[a,b,c]=winningPattern[i]
       if(box[a] && box[a]==box[b] && box[a]==box[c]){
         setGameOver(true)
-        return box[a];
+        return `winner is ${box[a]}`;
+      }
+      if (box.every(cell => cell !== "")) {
+        setGameOver(true)
+        return "Match is draw";
       }
     }
   }
@@ -52,10 +56,12 @@ function resetGame(){
     <div className="container">
       <h1>TicTacToe Game</h1>
       {
-        gameOver? (<>
-          <h5>Winner is {winner} </h5>
+        gameOver? 
+        (<>
+          <h5>{winner} </h5>
           <button onClick={resetGame}> Restart</button>
-        </>) : (<>
+        </>) : 
+        (<>
           <h4>It's now {isX?"X":"O"} turn</h4>
       <div className="game-board">
       {
